@@ -7,6 +7,9 @@ import com.dalakoti07.android.restaurantapp.data.models.FoodModel;
 
 import java.util.ArrayList;
 
+/**
+   mocking the server
+ */
 public class MockServer {
     private static final String TAG = "MockServer";
 
@@ -38,9 +41,9 @@ public class MockServer {
     public ArrayList<FoodModel> getTopFoodArrayList(){
         if(topFoodArrayList==null){
             topFoodArrayList=new ArrayList<>();
-            topFoodArrayList.add(new FoodModel("Upma","https://www.refrigeratedfrozenfood.com/ext/resources/NEW_RD_Website/DefaultImages/default-pasta.jpg?1430942591",80,3.4));
-            topFoodArrayList.add(new FoodModel("Veg Noodle","https://www.refrigeratedfrozenfood.com/ext/resources/NEW_RD_Website/DefaultImages/default-pasta.jpg?1430942591",150,4.4));
-            topFoodArrayList.add(new FoodModel("Veg Noodle","https://www.refrigeratedfrozenfood.com/ext/resources/NEW_RD_Website/DefaultImages/default-pasta.jpg?1430942591",150,4.4));
+            topFoodArrayList.add(new FoodModel("Idly","https://www.refrigeratedfrozenfood.com/ext/resources/NEW_RD_Website/DefaultImages/default-pasta.jpg?1430942591",80,3.4));
+            topFoodArrayList.add(new FoodModel("Butter nan","https://www.refrigeratedfrozenfood.com/ext/resources/NEW_RD_Website/DefaultImages/default-pasta.jpg?1430942591",150,4.4));
+            topFoodArrayList.add(new FoodModel("veb Burger","https://www.refrigeratedfrozenfood.com/ext/resources/NEW_RD_Website/DefaultImages/default-pasta.jpg?1430942591",150,4.4));
 
             return topFoodArrayList;
         }else
@@ -54,22 +57,36 @@ public class MockServer {
         // list 1
         foodModelArrayList.add(new FoodModel("Upma","https://www.refrigeratedfrozenfood.com/ext/resources/NEW_RD_Website/DefaultImages/default-pasta.jpg?1430942591",80,3.4));
         foodModelArrayList.add(new FoodModel("Dosa","https://www.refrigeratedfrozenfood.com/ext/resources/NEW_RD_Website/DefaultImages/default-pasta.jpg?1430942591",150,4.4));
-        Category category= new Category("South India","https://res.cloudinary.com/sanitarium/image/fetch/q_auto/https://www.sanitarium.com.au/getmedia%2Fae51f174-984f-4a70-ad3d-3f6b517b6da1%2Ffruits-vegetables-healthy-fats.jpg%3Fwidth%3D1180%26height%3D524%26ext%3D.jpg",foodModelArrayList);
+        Category category= new Category("South India",
+                "https://res.cloudinary.com/sanitarium/image/fetch/q_auto/https://www.sanitarium.com.au/getmedia%2Fae51f174-984f-4a70-ad3d-3f6b517b6da1%2Ffruits-vegetables-healthy-fats.jpg%3Fwidth%3D1180%26height%3D524%26ext%3D.jpg"
+                ,doDeepCopy(foodModelArrayList));
         categoryArrayList.add(category);
 
         // list 2
         foodModelArrayList.clear();
         foodModelArrayList.add(new FoodModel("Noodles","https://www.refrigeratedfrozenfood.com/ext/resources/NEW_RD_Website/DefaultImages/default-pasta.jpg?1430942591",80,3.4));
         foodModelArrayList.add(new FoodModel("Veg Noodle","https://www.refrigeratedfrozenfood.com/ext/resources/NEW_RD_Website/DefaultImages/default-pasta.jpg?1430942591",150,4.4));
-        category= new Category("Chinese","https://res.cloudinary.com/sanitarium/image/fetch/q_auto/https://www.sanitarium.com.au/getmedia%2Fae51f174-984f-4a70-ad3d-3f6b517b6da1%2Ffruits-vegetables-healthy-fats.jpg%3Fwidth%3D1180%26height%3D524%26ext%3D.jpg",foodModelArrayList);
+        category= new Category("Chinese","https://res.cloudinary.com/sanitarium/image/fetch/q_auto/https://www.sanitarium.com.au/getmedia%2Fae51f174-984f-4a70-ad3d-3f6b517b6da1%2Ffruits-vegetables-healthy-fats.jpg%3Fwidth%3D1180%26height%3D524%26ext%3D.jpg",doDeepCopy(foodModelArrayList));
         categoryArrayList.add(category);
 
         // list 3
         foodModelArrayList.clear();
-        foodModelArrayList.add(new FoodModel("Noodles","https://www.refrigeratedfrozenfood.com/ext/resources/NEW_RD_Website/DefaultImages/default-pasta.jpg?1430942591",80,3.4));
-        foodModelArrayList.add(new FoodModel("Veg Noodle","https://www.refrigeratedfrozenfood.com/ext/resources/NEW_RD_Website/DefaultImages/default-pasta.jpg?1430942591",150,4.4));
-        category= new Category("North Indian","https://res.cloudinary.com/sanitarium/image/fetch/q_auto/https://www.sanitarium.com.au/getmedia%2Fae51f174-984f-4a70-ad3d-3f6b517b6da1%2Ffruits-vegetables-healthy-fats.jpg%3Fwidth%3D1180%26height%3D524%26ext%3D.jpg",foodModelArrayList);
+        foodModelArrayList.add(new FoodModel("Choole Bhature","https://www.refrigeratedfrozenfood.com/ext/resources/NEW_RD_Website/DefaultImages/default-pasta.jpg?1430942591",80,3.4));
+        foodModelArrayList.add(new FoodModel("Shaahi Paneer","https://www.refrigeratedfrozenfood.com/ext/resources/NEW_RD_Website/DefaultImages/default-pasta.jpg?1430942591",150,4.4));
+        category= new Category("North Indian","https://res.cloudinary.com/sanitarium/image/fetch/q_auto/https://www.sanitarium.com.au/getmedia%2Fae51f174-984f-4a70-ad3d-3f6b517b6da1%2Ffruits-vegetables-healthy-fats.jpg%3Fwidth%3D1180%26height%3D524%26ext%3D.jpg",doDeepCopy(foodModelArrayList));
         categoryArrayList.add(category);
 
+    }
+
+    /**
+     *
+        deep coping the array list
+     */
+    private ArrayList<FoodModel> doDeepCopy(ArrayList<FoodModel> toBeCopied){
+        ArrayList<FoodModel> foodModelArrayList= new ArrayList<>();
+        for(FoodModel foodModel:toBeCopied){
+            foodModelArrayList.add(foodModel);
+        }
+        return foodModelArrayList;
     }
 }

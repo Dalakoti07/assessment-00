@@ -43,6 +43,12 @@ public class CartActivity extends AppCompatActivity implements DishesAdapter.cli
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.back_press_move_in,R.anim.back_press_move_out);
+    }
+
+    @Override
     public void addToCartClicked(FoodModel category) {
 
     }

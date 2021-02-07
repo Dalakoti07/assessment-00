@@ -3,6 +3,7 @@ package com.dalakoti07.android.restaurantapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -30,10 +31,22 @@ public class CategoryDetailActivity extends AppCompatActivity implements DishesA
         cartItemCounter= new CartItemCounter(findViewById(R.id.cart_menu_option));
         cartItemCounter.setCountValue(((RestaurantApplication)getApplication()).getTotalItemsCount());
         tv_top.setText("Foods in "+getIntent().getStringExtra("category")+" are: ");
+
+        findViewById(R.id.cart_menu_option).setOnClickListener(view -> {
+            startActivity(new Intent(CategoryDetailActivity.this,CartActivity.class));
+            overridePendingTransition(R.anim.next_screen_move_in,R.anim.next_screen_move_out);
+        });
     }
 
     @Override
-    public void addToCartClicked(FoodModel category) {
+    public void addToCartClicked(FoodModel foodItem) {
+        ((RestaurantApplication)getApplication()).addFoodToList(foodItem);
+        cartItemCounter.setCountValue(((RestaurantApplication)getApplication()).getTotalItemsCount());
+    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.back_press_move_in,R.anim.back_press_move_out);
     }
 }

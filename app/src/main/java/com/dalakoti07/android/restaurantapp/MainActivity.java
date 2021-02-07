@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements DishCatAdapter.cl
 
         findViewById(R.id.cart_menu_option).setOnClickListener(view -> {
             startActivity(new Intent(MainActivity.this,CartActivity.class));
+            overridePendingTransition(R.anim.next_screen_move_in,R.anim.next_screen_move_out);
         });
         dishesAdapter= new DishesAdapter(this,mockServer.getTopFoodArrayList(),this,true);
         rv_top_foods.setAdapter(dishesAdapter);
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements DishCatAdapter.cl
         intent.putParcelableArrayListExtra("arrayList",category.getFoodsList());
         intent.putExtra("category",category.getName());
         startActivity(intent);
+        overridePendingTransition(R.anim.next_screen_move_in,R.anim.next_screen_move_out);
     }
 
     @Override
